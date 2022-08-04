@@ -112,10 +112,10 @@ print(bubbleSortArray(array: unsortedArray))
 
 var smtString: String = "abc123"
 
-func plusOne(_: String) -> String {
+func plusOne(myText: String) -> String {
     
-    let text = smtString.components(separatedBy: .decimalDigits).joined(separator: "") // Находим текст
-    var numbersString = smtString
+    let text = myText.components(separatedBy: .decimalDigits).joined(separator: "") // Находим текст
+    var numbersString = myText
         .map({ "\($0)" }) //преобразуем в массив
         .compactMap( { Int($0) }) // находим числа
         .map( { "\($0)" } ) // преобразуем числа в строки
@@ -125,5 +125,18 @@ func plusOne(_: String) -> String {
     numbersString = "\(intNumber + 1)" // прибавляем единицу к числу и обратно преобразуем в String
     return text + numbersString
 }
-print(plusOne(smtString))
+print(plusOne(myText: smtString))
+
+// MARK: - Второй метод, в котором мы должны вручную ввести количество букв и чифр
+
+func secondPlusOne(myText: String, characterCount: Int, numberCount: Int) -> String {
+    
+    // Используем suffix-, prefix-операторы
+    let text = myText.prefix(characterCount)
+    guard let numbers = Int(myText.suffix(numberCount)) else { return ""}
+    
+    return "\(text)\(numbers + 1)"
+}
+
+secondPlusOne(myText: smtString, characterCount: 3, numberCount: 3)
 
